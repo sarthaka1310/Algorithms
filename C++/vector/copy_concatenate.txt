@@ -1,0 +1,15 @@
+//Use this:
+https://stackoverflow.com/a/41997434
+AB.reserve( A.size() + B.size() ); // preallocate memory
+AB.insert( AB.end(), A.begin(), A.end() );
+AB.insert( AB.end(), B.begin(), B.end() );
+
+https://stackoverflow.com/a/3177252
+//using this approach if you want to
+//concatenate A and B and store in AB:
+AB.reserve( A.size() + B.size() ); // preallocate memory
+copy(A.begin(),A.end(),std::back_inserter(AB));
+copy(B.begin(),B.end(),std::back_inserter(AB));
+
+//FOR COPY (check multiple answers)
+https://stackoverflow.com/questions/644673/fast-way-to-copy-one-vector-into-another/644677
