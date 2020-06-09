@@ -22,11 +22,7 @@ int score(int i, int j, int a[], int pre[]) // gives max score for [i,j]on array
 	if(j==i+1)
 		return dp[i][j] = max(a[i], a[j]);
 
-	//debugging
-	//cout<<( ((a[i]+pre[j]-pre[i]-score(i+1, j, a, pre))>(a[j]+pre[j]-pre[i]-score(i, j-1, a, pre)))?i:j)<<" in "<<i<<" , "<<j<<endl; 
-	//cout<<max( (a[i]+pre[j]-pre[i]-score(i+1, j, a, pre)), (a[j]+pre[j]-pre[i]-score(i, j-1, a, pre)) )<<endl;
-	
-	return dp[i][j] = max( (a[i]+pre[j]-pre[i]-score(i+1, j, a, pre)), (a[j]+pre[j]-pre[i]-score(i, j-1, a, pre)) );
+	return dp[i][j] = max( (a[i]+pre[j]-pre[i]-score(i+1, j, a, pre)), (a[i]+pre[j]-pre[i]-score(i, j-1, a, pre)) );
 	//a[i]+pre[j]-pre[i] is the sum of elements in [i,j]
 	//hence max(sum(i,j)-score(i+1,j), sum(i,j)-score(i,j-1))
 }
@@ -46,14 +42,6 @@ int main()
 	pre[0]=a[0];
 	for(int i=1; i<n;i++)
 		pre[i]=pre[i-1]+a[i];
-
-	//debugging the prefix sum
-	/*
-	   cout<<"Prefix sum\n";
-	   for(int i=0; i<n;i++)
-	   cout<<pre[i]<<" ";
-	   cout<<endl;
-	   */
 
 	reset();
 	cout<<"Max score is :\n";
