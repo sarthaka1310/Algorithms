@@ -1,7 +1,7 @@
 #TC
 arr = [10, 7, 8, 1, 4, 2, 5]
 
-def countingSort(arr, k, key):
+def countingSort(arr, k, key=(lambda x:x)):
     table = [[] for _ in range(k+3)]
 
     for n in arr:
@@ -23,7 +23,7 @@ def radixSort(arr, k):
         copy/=b
     
     for pos in range(d):
-        arr = countingSort(arr, k, lambda x : x//(b**pos)%b )
+        arr = countingSort(arr, k, lambda x : (x//(b**pos))%b )
     
     return arr
 
