@@ -6,20 +6,6 @@ using namespace std;
 
 #define ll long long
 
-ll power(ll x, ll y)//fast integer exponentiation
-{
-	ll ans=1;
-	while(y)
-	{
-		if(y&1)
-			ans*=x;
-		y/=2;
-		x*=x;
-	}
-
-	return ans;
-}
-
 vector<ll> counting_sort(vector<ll> v, function<ll(ll)> key = [](ll x){return x;}, ll k=-1)
 {
 	vector<ll> w;
@@ -56,10 +42,12 @@ vector<ll> radix_sort(vector<ll> v, ll k=-1)
 	while(temp/=b)
 		d++;
 	
-	for(int i=0;i<=d;i++){
+	ll power_count=1;
+	for(ll i=0;i<=d;i++){
 		function<ll(ll)> key;
-		key = [i,b](ll x){return ((x/power(b,i))%b);};
+		key = [power_count,b](ll x){return ((x/power_count)%b);};
 		v=counting_sort(v, key, k);
+		power_count*=b;
 	}
 
 	return v;
